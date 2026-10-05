@@ -8,6 +8,8 @@ https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/
 [TLS / SSL]
 https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview
 
+[Kerberos]
+https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview
 
 # Hyper-V Cluster
 [Clustering in Server and Azure Local]
