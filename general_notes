@@ -13,6 +13,9 @@ https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-s
 [Clustering in Server and Azure Local]
 https://learn.microsoft.com/en-us/windows-server/failover-clustering/failover-clustering-overview
 
+[Failover Cluster guide]
+https://learn.microsoft.com/en-us/windows-server/failover-clustering/create-failover-cluster?pivots=failover-cluster-manager
+
 [Storage Spaces Direct]
 https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview
 
