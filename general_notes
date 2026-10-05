@@ -40,7 +40,14 @@ DISM /image:D:\ /Remove-Package /PackageName:"exact_package_ID"
 -Repair Windows files or the component store if necessary:
 DISM /image:D:\ /Cleanup-Image /RestoreHealth
 (add updated /Source iso if needed)
-sfc /scannow /offbootdir=D:\ /offwinddir=D:\Windows
+sfc /scannow /offbootdir=D:\ /offwindir=D:\Windows
+
+-If update from /Source:
+DISM /Get-ImageInfo /ImageFile:E:\sources\install.wim
+The output identifies the image indexes and Windows editions. Select the image corresponding to your installed server rather than assuming an index.
+
+Assuming your index is "2":
+DISM /Image:D:\ /Cleanup-Image /RestoreHealth /Source:WIM:E:\sources\install.wim:2
 
 -When server boots up after being fixed:
 DISM /Online /Cleanup-Image /restoreHealth
