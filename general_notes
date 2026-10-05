@@ -1,0 +1,47 @@
+# General
+[Active Directory]
+https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview
+
+[Certificate Services]
+https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/
+
+[TLS / SSL]
+https://learn.microsoft.com/en-us/windows-server/security/tls/tls-ssl-schannel-ssp-overview
+
+
+# Hyper-V Cluster
+[Clustering in Server and Azure Local]
+https://learn.microsoft.com/en-us/windows-server/failover-clustering/failover-clustering-overview
+
+[Storage Spaces Direct]
+https://learn.microsoft.com/en-us/windows-server/storage/storage-spaces/storage-spaces-direct-overview
+
+# Update rollback
+1. Confirm Boot error
+2. Safe Mode + recovery media (up-to-date ISO)
+3. From recovery use offline DISM to reverse pending actions or remove updates
+4. Use DISM and SFC to repair corruption
+5. If repairs were unsuccessful or exceed the recovery window -> restore from known good backup/snapshot
+
+diskpart
+list volume
+exit
+
+-Undo failed or looped update with offline DISM:
+DISM /image:D:\ /Cleanup-Image /RevertPendingActions
+
+-When specific update is responsible:
+DISM /image:D:\ /Get-Packages /Format:Table
+Inspect suspected package:
+DISM /image:D:\ /Get-PackageInfo /PackageName:"exact_package_ID"
+Then remove identified package:
+DISM /image:D:\ /Remove-Package /PackageName:"exact_package_ID"
+
+-Repair Windows files or the component store if necessary:
+DISM /image:D:\ /Cleanup-Image /RestoreHealth
+(add updated /Source iso if needed)
+sfc /scannow /offbootdir=D:\ /offwinddir=D:\Windows
+
+-When server boots up after being fixed:
+DISM /Online /Cleanup-Image /restoreHealth
+sfc /scannow
